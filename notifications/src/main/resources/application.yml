@@ -1,0 +1,11 @@
+server:
+  port: 8082
+  
+spring:
+  application:
+    name: "notifications"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: admin
+    url: jdbc:postgresql://localhost:5435/notificationsDb
+    username: admin
