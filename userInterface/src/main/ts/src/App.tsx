@@ -1,38 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button, HStack } from '@chakra-ui/react'
+import './App.sass'
+import { Button, Field, HStack, Input, RatingGroup, Slider } from '@chakra-ui/react'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       <HStack>
-      <Button onClick={()=>console.log()}>Click me</Button>
-      <Button>Click me</Button>
-    </HStack>
+        <Button onClick={() => console.log()}>Click me</Button>
+        <Button>Click me</Button>
+        <Field.Root>
+          <Field.Label>Email</Field.Label>
+          <Input placeholder="me@example.com" />
+        </Field.Root>
+        <Slider.Root width="200px" defaultValue={[40]}>
+      <Slider.Control>
+        <Slider.Track>
+          <Slider.Range />
+        </Slider.Track>
+        <Slider.Thumbs />
+      </Slider.Control>
+    </Slider.Root>
+    <RatingGroup.Root count={5} defaultValue={3} size="sm">
+      <RatingGroup.HiddenInput />
+      <RatingGroup.Control />
+    </RatingGroup.Root>
+      </HStack>
     </>
   )
 }
