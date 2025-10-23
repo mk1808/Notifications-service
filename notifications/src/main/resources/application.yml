@@ -9,3 +9,9 @@ spring:
     password: admin
     url: jdbc:postgresql://localhost:5435/notificationsDb
     username: admin
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest		
