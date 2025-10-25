@@ -11,7 +11,7 @@ plugins {
 
 group = "com.notifications"
 version = "0.0.1-SNAPSHOT"
-description = "User interface Spring Project"
+description = "User interface service"
 
 java {
 	toolchain {
