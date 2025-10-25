@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-  notificationsDb:
+  notificationsDbP:
     image: postgres
-    container_name: notificationsDb
+    container_name: notificationsDbP
     ports:
       - 5435:5432
     healthcheck:
@@ -17,11 +17,11 @@ services:
     environment:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_USER=admin
-      - POSTGRES_DB=notificationsDb
+      - POSTGRES_DB=notificationsDbP
 
   notifications:
     image: "mk1808/notifications:0.0.1-SNAPSHOT"
-    container_name: notifications-ms
+    container_name: notifications-ms2
     ports:
       - "8081:8081"
     healthcheck:
@@ -31,12 +31,16 @@ services:
       retries: 10
       start_period: 10s
     depends_on:
-      notificationsDb:
+      notificationsDbP:
         condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://notificationsDb:5432/notificationsDb"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://notificationsDbP:5432/notificationsDbP"
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_RABBITMQ_HOST: rabbitmq
 
   rabbitmq:
     image: rabbitmq:latest
@@ -46,15 +50,19 @@ services:
       - 5672:5672
       - 15672:15672
     environment:
-      RABBITMQ_DEFAULT_USER: kalo
-      RABBITMQ_DEFAULT_PASS: kalo
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     configs:
       - source: rabbitmq-plugins
         target: /etc/rabbitmq/enabled_plugins
     volumes:
       - E:/docker-files/notifications-rabbit/lib:/var/lib/rabbitmq/
       - E:/docker-files/notifications-rabbit/log:/var/log/rabbitmq/
-
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 10s
+      retries: 3
 configs:
   rabbitmq-plugins:
     content: "[rabbitmq_management]."  
