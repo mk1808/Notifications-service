@@ -6,6 +6,7 @@ plugins {
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("com.github.node-gradle.node") version "5.0.0"
+	id("com.google.cloud.tools.jib") version "3.4.5"
 }
 
 group = "com.notifications"
@@ -27,6 +28,7 @@ extra["springCloudVersion"] = "2025.0.0"
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -72,5 +74,15 @@ tasks.named("appNpmBuild") {
 
 tasks.named("compileJava") {
     dependsOn("copyToFrontend")
+}
+
+tasks.named("processResources") {
+    dependsOn("copyToFrontend")
+}
+
+jib {
+	to {
+		image = "docker.io/mk1808/user-interface:${version}"
+	}
 }
 
