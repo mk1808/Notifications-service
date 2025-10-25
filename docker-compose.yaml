@@ -19,6 +19,18 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_DB=notificationsDbP
 
+  eureka:
+    image: "mk1808/eureka:0.0.1-SNAPSHOT"
+    container_name: eureka-ms2
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: "curl --fail --silent localhost:8761/actuator/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+
   notifications:
     image: "mk1808/notifications:0.0.1-SNAPSHOT"
     container_name: notifications-ms2
@@ -35,12 +47,15 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      eureka:
+        condition: service_healthy
       
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://notificationsDbP:5432/notificationsDbP"
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
       SPRING_RABBITMQ_HOST: rabbitmq
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
 
   userInterface:
     image: "mk1808/user-interface:0.0.1-SNAPSHOT"
@@ -56,6 +71,10 @@ services:
     depends_on:
       notifications:
         condition: service_healthy
+      eureka:
+        condition: service_healthy
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
 
   rabbitmq:
     image: rabbitmq:latest
