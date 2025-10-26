@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("com.google.cloud.tools.jib") version "3.4.5"
 }
 
 group = "com"
@@ -36,4 +37,10 @@ dependencyManagement {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jib {
+	to {
+		image = "docker.io/mk1808/api-gateway:${version}"
+	}
 }
