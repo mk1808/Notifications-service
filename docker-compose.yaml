@@ -76,6 +76,27 @@ services:
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
 
+  gateway:
+    image: "mk1808/api-gateway:0.0.1-SNAPSHOT"
+    container_name: apigateway-ms2
+    ports:
+      - "8072:8072"
+    healthcheck:
+      test: "curl --fail --silent localhost:8072/actuator/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+    depends_on:
+      eureka:
+        condition: service_healthy
+      notifications:
+        condition: service_healthy
+      userInterface:
+        condition: service_healthy
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8761/eureka/"
+
   rabbitmq:
     image: rabbitmq:latest
     container_name: rabbitmq
@@ -106,3 +127,5 @@ volumes:
     driver: local
   rabbitmq-log:
     driver: local
+
+  
