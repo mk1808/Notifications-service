@@ -1,4 +1,4 @@
-package com.notifications.queue;
+package com.notifications.configs;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

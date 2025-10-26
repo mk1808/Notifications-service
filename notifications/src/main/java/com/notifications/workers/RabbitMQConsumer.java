@@ -1,7 +1,9 @@
-package com.notifications.queue;
+package com.notifications.workers;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+
+import com.notifications.configs.RabbitMQConfig;
 
 @Component
 public class RabbitMQConsumer {
