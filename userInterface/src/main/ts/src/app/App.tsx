@@ -1,6 +1,6 @@
 import { Camera } from 'lucide-react'
-import './App.sass'
-import { Button, Field, HStack, Input, RatingGroup, Slider } from '@chakra-ui/react'
+import './styles.sass'
+import { Alert, Button, Field, HStack, Input, RatingGroup, Slider } from '@chakra-ui/react'
 
 function App() {
 
@@ -25,6 +25,13 @@ function App() {
           <RatingGroup.Control />
         </RatingGroup.Root>
         <Camera color="red" size={48} />;
+        <Alert.Root>
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title />
+    <Alert.Description />
+  </Alert.Content>
+</Alert.Root>
       </HStack>
   )
 }
