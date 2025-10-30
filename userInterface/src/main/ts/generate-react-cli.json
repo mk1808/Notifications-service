@@ -1,0 +1,22 @@
+{
+  "usesTypeScript": true,
+  "usesStyledComponents": false,
+  "usesCssModule": false,
+  "cssPreprocessor": "sass",
+  "testLibrary": "None",
+  "customTemplates": {
+    "component": "templates/Template.tsx",
+    "style": "templates/styles.sass",
+    "style2": "templates/styles.sass"
+    
+  },
+  "component": {
+    "default": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": false,
+      "withStory": false,
+      "withLazy": false
+    }
+  }
+}
