@@ -11,7 +11,7 @@ import eslintReact from "@eslint-react/eslint-plugin";
 import react from 'eslint-plugin-react';
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '**/*.sass', '**/*.svg', 'vite.config.ts']),
   {
     files: ['**/*.{ts,tsx}'],
     plugins: {
@@ -43,6 +43,7 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': ['warn'],
       '@typescript-eslint/explicit-function-return-type': ['off'],
       '@typescript-eslint/no-unused-vars': ['error'],
+      "@typescript-eslint/no-empty-object-type": ["warn"],
       'react/prop-types': 'off',
       "react/prefer-stateless-function": "error",
       "react/button-has-type": "error",
@@ -82,6 +83,7 @@ export default defineConfig([
       "react/react-in-jsx-scope": "off",
       "react/jsx-one-expression-per-line": "off",
       "react/prop-types": "off",
+      "react-refresh/only-export-components": "off",
       'import/default': 'off',
       'import/no-cycle': 'error',
       'import/order': [
@@ -133,12 +135,22 @@ export default defineConfig([
           ],
         },
       ],
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto",
+          "useTabs": true
+        }
+      ],
       'check-file/filename-naming-convention': [
         'error',
         {
           '**/*.{jsx,tsx}': 'PASCAL_CASE',
-          '**/*.{js,ts}': 'CAMEL_CASE',
+          '**/*.{js,ts}': 'CAMEL_CASE', 
         },
+        { 
+          'ignoreMiddleExtensions': true 
+        }
       ],
     },
     "settings": {
