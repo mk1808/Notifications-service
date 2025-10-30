@@ -8,6 +8,7 @@ class EurekaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Default test method
 	}
 
 }

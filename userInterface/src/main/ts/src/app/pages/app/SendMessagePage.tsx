@@ -1,10 +1,15 @@
-import React, { type JSX } from 'react';
-interface SendMessagePageProps { }
+import { type JSX } from "react";
+interface SendMessagePageProps {
+	placeholder?: string;
+}
 
-const SendMessagePage = (props: SendMessagePageProps): JSX.Element => (
-  <div>
-    <h1>SendMessagePage component</h1>
-  </div>
+const SendMessagePage = ({
+	placeholder,
+}: SendMessagePageProps): JSX.Element => (
+	<div>
+		<h1>SendMessagePage component</h1>
+		{placeholder}
+	</div>
 );
 
 export default SendMessagePage;

@@ -1,4 +1,4 @@
-package com.notifications.userInterface;
+package com.notifications.user_interface;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,7 @@ class UserInterfaceApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Default test method
 	}
 
 }
