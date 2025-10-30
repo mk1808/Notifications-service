@@ -9,14 +9,16 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import importPlugin from 'eslint-plugin-import';
 import eslintReact from "@eslint-react/eslint-plugin";
 import react from 'eslint-plugin-react';
+import unusedImports from "eslint-plugin-unused-imports";
 
 export default defineConfig([
-  globalIgnores(['dist', '**/*.sass', '**/*.svg', 'vite.config.ts']),
+  globalIgnores(['dist', '**/*.scss', '**/*.svg', 'vite.config.ts', './templates/TemplateName.tsx']),
   {
     files: ['**/*.{ts,tsx}'],
     plugins: {
       'check-file': checkFile,
       'react': react,
+      "unused-imports": unusedImports,
     },
     extends: [
       js.configs.recommended,
@@ -150,6 +152,16 @@ export default defineConfig([
         { 
           'ignoreMiddleExtensions': true 
         }
+      ],
+      "unused-imports/no-unused-imports": ["error"],
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+          "args": "after-used",
+          "argsIgnorePattern": "^_",
+        },
       ],
     },
     "settings": {
