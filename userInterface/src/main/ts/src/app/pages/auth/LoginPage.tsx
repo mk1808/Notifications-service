@@ -1,10 +1,13 @@
-import React, { type JSX } from 'react';
-interface LoginPageProps { }
+import { type JSX } from "react";
+interface LoginPageProps {
+	placeholder?: string;
+}
 
-const LoginPage = (props: LoginPageProps): JSX.Element => (
-  <div>
-    <h1>LoginPage component</h1>
-  </div>
+const LoginPage = ({ placeholder }: LoginPageProps): JSX.Element => (
+	<div>
+		<h1>LoginPage component</h1>
+		{placeholder}
+	</div>
 );
 
 export default LoginPage;

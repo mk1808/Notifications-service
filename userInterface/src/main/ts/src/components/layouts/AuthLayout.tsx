@@ -1,11 +1,14 @@
-import React, { type JSX } from 'react';
-import './styles.sass';
-interface AuthLayoutProps { }
+import { type JSX } from "react";
+import "./styles.scss";
+interface AuthLayoutProps {
+	placeholder?: string;
+}
 
-const AuthLayout = (props: AuthLayoutProps): JSX.Element => (
-  <div className="AuthLayout">
-    <h1>AuthLayout component</h1>
-  </div>
+const AuthLayout = ({ placeholder }: AuthLayoutProps): JSX.Element => (
+	<div className="AuthLayout">
+		<h1>AuthLayout component</h1>
+		{placeholder}
+	</div>
 );
 
 export default AuthLayout;

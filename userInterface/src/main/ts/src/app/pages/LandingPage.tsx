@@ -1,10 +1,14 @@
-import React, { type JSX } from 'react';
-interface LandingPageProps { }
+import { type JSX } from "react";
 
-const LandingPage = (props: LandingPageProps): JSX.Element => (
-  <div>
-    <h1>LandingPage component</h1>
-  </div>
+interface LandingPageProps {
+	placeholder?: string;
+}
+
+const LandingPage = ({ placeholder }: LandingPageProps): JSX.Element => (
+	<div>
+		<h1>LandingPage component</h1>
+		{placeholder}
+	</div>
 );
 
 export default LandingPage;
