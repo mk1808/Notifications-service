@@ -82,7 +82,6 @@ export default defineConfig([
       "react/jsx-sort-props": "warn",
       "react/react-in-jsx-scope": "off",
       "react/jsx-one-expression-per-line": "off",
-      "react/prop-types": "off",
       "react-refresh/only-export-components": "off",
       'import/default': 'off',
       'import/no-cycle': 'error',
