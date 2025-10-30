@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import './styles.sass';
+import './styles.scss';
 interface TemplateNameProps { }
 
 const TemplateName = (props: TemplateNameProps): JSX.Element => (

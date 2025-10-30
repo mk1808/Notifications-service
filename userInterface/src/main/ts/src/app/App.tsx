@@ -1,5 +1,5 @@
 import { Camera } from 'lucide-react'
-import './styles.sass'
+import './styles.scss'
 import { Alert, Button, Field, HStack, Input, RatingGroup, Slider } from '@chakra-ui/react'
 
 function App() {
