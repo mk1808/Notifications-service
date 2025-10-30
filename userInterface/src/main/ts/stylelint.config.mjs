@@ -4,5 +4,7 @@ export default {
         "stylelint-config-recommended",
         "stylelint-config-standard-scss",
         "stylelint-config-sass-guidelines",
-    ]
+    ],
+    rules:{
+    }
 };
