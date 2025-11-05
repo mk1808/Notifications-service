@@ -46,8 +46,8 @@ const App = () => {
 						<Alert.Description />
 					</Alert.Content>
 				</Alert.Root>
-				<p id="paragraphId">TEST STYLI SCSS</p>
-				<p id="paragraphId2">TEST STYLI SCSS</p>
+				<p className="paragraph-id">TEST STYLI SCSS</p>
+				<p className="paragraph-id2">TEST STYLI SCSS</p>
 			</HStack>
 			<HStack>
 				<p>

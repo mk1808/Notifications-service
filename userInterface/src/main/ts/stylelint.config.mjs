@@ -6,5 +6,6 @@ export default {
         "stylelint-config-sass-guidelines",
     ],
     rules:{
+        "@stylistic/indentation": ["tab"],
     }
 };
