@@ -147,10 +147,10 @@ export default defineConfig([
         'error',
         {
           '**/*.{jsx,tsx}': 'PASCAL_CASE',
-          '**/*.{js,ts}': 'CAMEL_CASE', 
+          '**/*.{js,ts}': 'CAMEL_CASE',
         },
-        { 
-          'ignoreMiddleExtensions': true 
+        {
+          'ignoreMiddleExtensions': true
         }
       ],
       "unused-imports/no-unused-imports": ["error"],
@@ -166,7 +166,10 @@ export default defineConfig([
     },
     "settings": {
       "react": {
-        "version": "detect", 
+        "version": "detect",
+      },
+      "import/resolver": {
+        "typescript": {}
       },
     }
   },
