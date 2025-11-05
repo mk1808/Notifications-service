@@ -11,6 +11,8 @@
     "lint:eslint:fix": "eslint . --fix",
     "lint:stylelint": "stylelint **/*.scss",
     "lint:stylelint:fix": "stylelint **/*.scss --fix",
+    "chakra:rebuildColors": "npx @chakra-ui/cli snippet add ColorMode",
+    "chakra:rebuildTheme": "npx @chakra-ui/cli typegen src/config/themeConfig.ts",
     "preview": "vite preview"
   },
   "dependencies": {
