@@ -1,15 +1,14 @@
 package com.notifications.services.impl;
 
-import com.notifications.dtos.NotificationDto;
+import com.notifications.dtos.ConfigInfoDto;
 import com.notifications.services.ConfigInfoService;
-import com.notifications.services.NotificationSendService;
 
-public class ConfigInfoServiceImpl implements NotificationSendService, ConfigInfoService {
+public class ConfigInfoServiceImpl implements ConfigInfoService {
 
 	@Override
-	public void send(NotificationDto dto) {
+	public ConfigInfoDto getCurrentConfig() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }
