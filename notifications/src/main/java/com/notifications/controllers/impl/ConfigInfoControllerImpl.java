@@ -7,7 +7,7 @@ import com.notifications.dtos.ConfigInfoDto;
 import com.notifications.services.ConfigInfoService;
 
 public class ConfigInfoControllerImpl implements ConfigInfoController {
-	
+
 	private ConfigInfoService configInfoService;
 
 	public ConfigInfoControllerImpl(ConfigInfoService configInfoService) {
@@ -15,11 +15,9 @@ public class ConfigInfoControllerImpl implements ConfigInfoController {
 		this.configInfoService = configInfoService;
 	}
 
-
-
 	@Override
 	public ResponseEntity<ConfigInfoDto> getCurrentConfig() {
-		
+
 		return ResponseEntity.ok(configInfoService.getCurrentConfig());
 	}
 

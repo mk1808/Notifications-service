@@ -10,7 +10,7 @@ import com.notifications.dtos.NotificationDto;
 @RestController
 @RequestMapping("/api/notifications/send")
 public interface NotificationSendController {
-	
+
 	@PostMapping
 	public ResponseEntity<String> send(NotificationDto notificationDto);
 

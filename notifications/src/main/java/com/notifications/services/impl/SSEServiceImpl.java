@@ -9,7 +9,7 @@ public class SSEServiceImpl implements NotificationSendService, SSEService {
 	@Override
 	public void send(NotificationDto dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

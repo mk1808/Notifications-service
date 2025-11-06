@@ -9,7 +9,7 @@ public class ShortPollingServiceImpl implements NotificationSendService, ShortPo
 	@Override
 	public void send(NotificationDto dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

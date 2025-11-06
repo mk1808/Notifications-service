@@ -9,7 +9,7 @@ public class RabbitMQServiceImpl implements NotificationSendService, RabbitMQSer
 	@Override
 	public void send(NotificationDto dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

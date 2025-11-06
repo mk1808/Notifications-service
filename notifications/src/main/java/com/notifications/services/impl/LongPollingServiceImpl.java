@@ -9,7 +9,7 @@ public class LongPollingServiceImpl implements NotificationSendService, LongPoll
 	@Override
 	public void send(NotificationDto dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

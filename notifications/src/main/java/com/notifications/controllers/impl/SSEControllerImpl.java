@@ -4,7 +4,7 @@ import com.notifications.controllers.SSEController;
 import com.notifications.services.SSEService;
 
 public class SSEControllerImpl implements SSEController {
-	
+
 	private SSEService service;
 
 	public SSEControllerImpl(SSEService service) {
