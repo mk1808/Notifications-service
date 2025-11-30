@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.notifications.dtos.ConfigInfoDto;
 
-@RestController
+
 @RequestMapping("/api/config")
 public interface ConfigInfoController {
 	
