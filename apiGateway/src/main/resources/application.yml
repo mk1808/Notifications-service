@@ -32,6 +32,8 @@ management:
   endpoint:
     shutdown:
       access: unrestricted
+    gateway:
+      enabled: true
   info:
     env:
       enabled: true
