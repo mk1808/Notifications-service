@@ -13,17 +13,17 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 
 import com.notifications.models.DbProperty;
-import com.notifications.repositories.DbPropertiesRepository;
+import com.notifications.repositories.DbPropertyRepository;
 
 @Configuration
 public class DbPropertiesConfig implements BeanPostProcessor, InitializingBean, EnvironmentAware {
 
 	private ConfigurableEnvironment environment;
-	private DbPropertiesRepository repository;
+	private DbPropertyRepository repository;
 
 	private static final String PROPERTY_SOURCE_NAME = "propertiesInsideDatabase";
 
-	public DbPropertiesConfig(DbPropertiesRepository repository) {
+	public DbPropertiesConfig(DbPropertyRepository repository) {
 		this.repository = repository;
 	}
 

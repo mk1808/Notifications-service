@@ -9,6 +9,9 @@ spring:
     password: admin
     url: jdbc:postgresql://localhost:5435/notificationsDbP
     username: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 management:
   endpoints:

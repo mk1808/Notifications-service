@@ -3,9 +3,9 @@ package com.notifications.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-//TODO: fix
+
 @Entity
-@Table(name = "props")
+@Table(name = "spring_property")
 public class DbProperty {
 	
 	@Id

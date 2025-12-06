@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.notifications.models.DbProperty;
 
 @Repository
-public interface DbPropertiesRepository extends JpaRepository<DbProperty, Integer> {
+public interface DbPropertyRepository extends JpaRepository<DbProperty, Integer> {
 
 }
