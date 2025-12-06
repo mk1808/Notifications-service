@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.notifications.controllers.ConfigInfoController;
-import com.notifications.dtos.ConfigInfoDto;
+import com.notifications.dtos.config.ConfigInfoDto;
 import com.notifications.services.ConfigInfoService;
 
 @RestController

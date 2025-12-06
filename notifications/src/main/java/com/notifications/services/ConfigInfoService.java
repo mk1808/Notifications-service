@@ -1,6 +1,6 @@
 package com.notifications.services;
 
-import com.notifications.dtos.ConfigInfoDto;
+import com.notifications.dtos.config.ConfigInfoDto;
 
 public interface ConfigInfoService {
 
