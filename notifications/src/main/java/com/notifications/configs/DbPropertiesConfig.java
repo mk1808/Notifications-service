@@ -21,7 +21,7 @@ public class DbPropertiesConfig implements BeanPostProcessor, InitializingBean, 
 	private ConfigurableEnvironment environment;
 	private DbPropertiesRepository repository;
 
-	private static final String propertySourceName = "propertiesInsideDatabase";
+	private static final String PROPERTY_SOURCE_NAME = "propertiesInsideDatabase";
 
 	public DbPropertiesConfig(DbPropertiesRepository repository) {
 		this.repository = repository;
@@ -31,14 +31,14 @@ public class DbPropertiesConfig implements BeanPostProcessor, InitializingBean, 
 	public void afterPropertiesSet() throws Exception {
 		if (environment != null) {
 			Map<String, Object> propertiesMap = getPropertiesMap();
-			environment.getPropertySources().addFirst(new MapPropertySource(propertySourceName, propertiesMap));
+			environment.getPropertySources().addFirst(new MapPropertySource(PROPERTY_SOURCE_NAME, propertiesMap));
 		}
 	}
 
 	@Override
 	public void setEnvironment(Environment environment) {
-		if (environment instanceof ConfigurableEnvironment) {
-			this.environment = (ConfigurableEnvironment) environment;
+		if (environment instanceof ConfigurableEnvironment configurableEnvironment) {
+			this.environment = configurableEnvironment;
 		}
 	}
 

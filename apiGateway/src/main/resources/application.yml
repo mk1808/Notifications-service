@@ -33,7 +33,7 @@ management:
     shutdown:
       access: unrestricted
     gateway:
-      enabled: true
+      access: unrestricted
   info:
     env:
       enabled: true

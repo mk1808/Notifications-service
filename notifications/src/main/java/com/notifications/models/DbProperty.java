@@ -1,11 +1,9 @@
 package com.notifications.models;
 
-import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+//TODO: fix
 @Entity
 @Table(name = "props")
 public class DbProperty {
