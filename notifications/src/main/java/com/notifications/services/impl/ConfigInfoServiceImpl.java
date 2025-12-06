@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.notifications.configs.DbProperties;
-import com.notifications.configs.RabbitProperties;
+import com.notifications.configs.properties.DbProperties;
+import com.notifications.configs.properties.RabbitProperties;
 import com.notifications.dtos.config.ConfigInfoDto;
 import com.notifications.services.ConfigInfoService;
 

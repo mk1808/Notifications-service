@@ -1,6 +1,6 @@
 package com.notifications.dtos.config;
 
-import com.notifications.configs.DbProperties;
+import com.notifications.configs.properties.DbProperties;
 
 public class DbPropertiesDto {
 	

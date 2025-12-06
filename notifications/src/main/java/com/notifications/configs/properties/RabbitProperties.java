@@ -1,4 +1,4 @@
-package com.notifications.configs;
+package com.notifications.configs.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

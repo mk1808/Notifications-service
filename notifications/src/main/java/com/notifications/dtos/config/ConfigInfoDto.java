@@ -1,7 +1,7 @@
 package com.notifications.dtos.config;
 
-import com.notifications.configs.DbProperties;
-import com.notifications.configs.RabbitProperties;
+import com.notifications.configs.properties.DbProperties;
+import com.notifications.configs.properties.RabbitProperties;
 
 public class ConfigInfoDto {
 	public DbPropertiesDto dbProperties;
