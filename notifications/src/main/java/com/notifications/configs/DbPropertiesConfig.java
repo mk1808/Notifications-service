@@ -1,5 +1,9 @@
 package com.notifications.configs;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.EnvironmentAware;
@@ -9,42 +13,42 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @Configuration
 public class DbPropertiesConfig implements BeanPostProcessor, InitializingBean, EnvironmentAware {
 
-  private JdbcTemplate jdbcTemplate;
-  private ConfigurableEnvironment environment;
+	private JdbcTemplate jdbcTemplate;
+	private ConfigurableEnvironment environment;
 
-  private final String propertySourceName = "propertiesInsideDatabase";
+	private static final String propertySourceName = "propertiesInsideDatabase";
 
-  public DbPropertiesConfig(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
-  }
+	public DbPropertiesConfig(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
-  @Override
-  public void afterPropertiesSet() throws Exception {
-    if (null != environment) {
-      Map<String, Object> systemConfigMap = new HashMap<>();
-      String sql = "SELECT key, value from props";
-      List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
-      for (Map<String, Object> map : maps) {
-        String key = String.valueOf(map.get("key"));
-        Object value = map.get("value");
-        systemConfigMap.put(key, value);
-        System.out.println(String.format("key=%s, value=%s ", key, value));
-      }
-      environment.getPropertySources().addFirst(new MapPropertySource(propertySourceName, systemConfigMap));
-    }
-  }
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		if (environment != null) {
 
-  @Override
-  public void setEnvironment(Environment environment) {
-    if(environment instanceof ConfigurableEnvironment) {
-      this.environment = (ConfigurableEnvironment) environment;
-    }
-  }
+			List<Map<String, Object>> propertiesList = getProperties();
+			Map<String, Object> propertiesMap = propertiesList.stream()
+					.collect(Collectors.toMap(
+							prop -> String.valueOf(prop.get("key")), 
+							prop -> prop.get("value")
+							));
+
+			environment.getPropertySources().addFirst(new MapPropertySource(propertySourceName, propertiesMap));
+		}
+	}
+
+	private List<Map<String, Object>> getProperties() {
+		String sql = "SELECT key, value from props";
+		return jdbcTemplate.queryForList(sql);
+	}
+
+	@Override
+	public void setEnvironment(Environment environment) {
+		if (environment instanceof ConfigurableEnvironment) {
+			this.environment = (ConfigurableEnvironment) environment;
+		}
+	}
 }
