@@ -1,5 +1,7 @@
 package com.notifications.controllers.impl;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +23,11 @@ public class ConfigInfoControllerImpl implements ConfigInfoController {
 	public ResponseEntity<ConfigInfoDto> getCurrentConfig() {
 
 		return ResponseEntity.ok(configInfoService.getCurrentConfig());
+	}
+
+	@Override
+	public ResponseEntity<ConfigInfoDto> update(Map<String, String> property) {
+		return ResponseEntity.ok(configInfoService.updateConfig(property));
 	}
 
 }

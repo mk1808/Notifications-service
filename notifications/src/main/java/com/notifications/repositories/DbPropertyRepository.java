@@ -7,5 +7,5 @@ import com.notifications.models.DbProperty;
 
 @Repository
 public interface DbPropertyRepository extends JpaRepository<DbProperty, Integer> {
-
+	DbProperty findByKey(String key);
 }

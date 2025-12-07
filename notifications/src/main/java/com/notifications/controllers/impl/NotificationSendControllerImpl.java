@@ -21,7 +21,7 @@ public class NotificationSendControllerImpl implements NotificationSendControlle
 	@Override
 	public ResponseEntity<String> send(NotificationDto notificationDto) {
 		notificationSendService.send(notificationDto);
-		return null;
+		return ResponseEntity.ok("ok");
 	}
 
 }
