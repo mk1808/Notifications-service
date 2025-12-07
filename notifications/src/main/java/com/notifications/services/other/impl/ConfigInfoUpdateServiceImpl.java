@@ -1,4 +1,4 @@
-package com.notifications.services.impl;
+package com.notifications.services.other.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.notifications.models.DbProperty;
 import com.notifications.repositories.DbPropertyRepository;
-import com.notifications.services.ConfigInfoUpdateService;
+import com.notifications.services.other.ConfigInfoUpdateService;
 
 @Service
 public class ConfigInfoUpdateServiceImpl implements ConfigInfoUpdateService, EnvironmentAware {

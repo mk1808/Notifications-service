@@ -10,7 +10,7 @@ import com.notifications.configs.properties.DbProperties;
 import com.notifications.configs.properties.RabbitProperties;
 import com.notifications.dtos.config.ConfigInfoDto;
 import com.notifications.services.ConfigInfoService;
-import com.notifications.services.ConfigInfoUpdateService;
+import com.notifications.services.other.ConfigInfoUpdateService;
 
 @Service
 public class ConfigInfoServiceImpl implements ConfigInfoService {

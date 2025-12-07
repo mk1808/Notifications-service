@@ -1,4 +1,4 @@
-package com.notifications.services;
+package com.notifications.services.other;
 
 import java.util.Map;
 
