@@ -5,8 +5,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const API_URL = `${env.VITE_API ?? 'http://localhost:8072'}`;
-  const NOTIFICATIONS_URL = `${env.VITE_API_NOTIFICATIONS ?? '/NOTIFICATIONS/api/notifications'}`;
-  const CONFIG_URL = `${env.VITE_API_CONFIG ?? '/NOTIFICATIONS/api/config'}`;
+
+  const NOTIFICATIONS_URL = `${env.VITE_API_NOTIFICATIONS_PROXY ?? '/NOTIFICATIONS/api/notifications'}`;
+  const CONFIG_URL = `${env.VITE_API_CONFIG_PROXY ?? '/NOTIFICATIONS/api/config'}`;
 
   return {
     plugins: [react(), tsconfigPaths()],
