@@ -19,7 +19,18 @@ interface InfoPageProps {
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
-
+	const sendUrl = import.meta.env.VITE_API_NOTIFICATIONS;
+	const configUrl = import.meta.env.VITE_API_CONFIG;
+	const getReq = async () => {
+		const response1 = await fetch(sendUrl + "/send", {
+			method: "GET"
+		});
+	}
+	const postReq = async () => {
+		const response2 = await fetch(configUrl, {
+			method: "POST"
+		});
+	}
 	return (
 		<>
 			{t("welcome")}
