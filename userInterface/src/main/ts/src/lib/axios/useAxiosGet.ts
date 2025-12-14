@@ -1,6 +1,6 @@
 import { useAxios } from "./useAxios";
 
-export const UseAxiosGet = (url: string) => {
+export const useAxiosGet = (url: string) => {
 	const api = useAxios({
 		url,
 		method: "GET",
