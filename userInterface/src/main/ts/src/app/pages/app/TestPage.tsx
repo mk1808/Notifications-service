@@ -30,7 +30,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	useEffect(() => {
 		response.makeRequest();
 		console.log(response.data);
-	}, [response]);
+	}, []);
 	const stringifiedData = useMemo(() => {
 		return JSON.stringify(postResponse.data ?? {});
 	}, [postResponse.data]);
