@@ -16,7 +16,6 @@ export const useAxios = <T>({ url, method, payload }: UseAxiosProps<T>) => {
 		controllerRef.current.abort();
 	};
 	const makeRequest = async (body?: T) => {
-		console.log("hello");
 		try {
 			const response = await axios.request({
 				data: body ?? payload,
