@@ -23,7 +23,6 @@ interface InfoPageProps {
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
 
-
 	const postResponse = UseSendMessageApi();
 
 	const response = UseGetConfigApi();
@@ -31,24 +30,25 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	useEffect(() => {
 		response.makeRequest();
 		console.log(response.data);
-	}, []);
+	}, [response]);
 	const stringifiedData = useMemo(() => {
-		return JSON.stringify(postResponse.data || {});
+		return JSON.stringify(postResponse.data ?? {});
 	}, [postResponse.data]);
 
 	return (
 		<>
+			{placeholder}
 			{t("welcome")} <br />
 			{stringifiedData}
 			{postResponse.loaded}
 			{postResponse.error}
 			{JSON.stringify(response.data || {})}
-
 			<HStack>
 				<Button
 					onClick={() => {
 						response.makeRequest();
-					}}>
+					}}
+				>
 					Click me
 				</Button>
 				<Button
