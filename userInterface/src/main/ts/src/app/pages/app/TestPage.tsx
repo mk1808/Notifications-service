@@ -9,35 +9,39 @@ import {
 	Box,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { type JSX } from "react";
+import { useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
+import { UseAxiosGet } from "@/lib/axios/UseAxiosGet";
+import { UseAxiosPost } from "@/lib/axios/UseAxiosPost";
+
 interface InfoPageProps {
 	placeholder?: string;
 }
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
-	console.log(import.meta.env.VITE_API); 
+	console.log(import.meta.env.VITE_API);
 
 	const sendUrl = import.meta.env.VITE_API_NOTIFICATIONS;
 	const configUrl = import.meta.env.VITE_API_CONFIG;
-	const getReq = async () => {
-		await fetch(sendUrl + "/send", {
-			method: "GET",
-		});
-	};
-	const postReq = async () => {
-		await fetch(configUrl, {
-			method: "POST",
-		});
-	};
-	getReq();
-	postReq();
+
+	const { data, error, loaded } = UseAxiosPost(sendUrl + "/send", {});
+
+	const response = UseAxiosGet(configUrl);
+	const stringifiedData = useMemo(() => {
+		return JSON.stringify(data || {});
+	}, [data]);
+
 	return (
 		<>
-			{t("welcome")}
+			{t("welcome")} <br />
+			{stringifiedData}
+			{loaded}
+			{error}
+			{JSON.stringify(response.data || {})}
+
 			<HStack>
 				<Button onClick={() => console.log(placeholder)}>Click me</Button>
 				<Button _hover={{ bg: "secondary" }} bg="primary">
