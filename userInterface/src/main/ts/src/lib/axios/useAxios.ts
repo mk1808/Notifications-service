@@ -7,7 +7,7 @@ interface UseAxiosProps<T> {
 	payload?: T;
 }
 
-export const UseAxios = <T,>({ url, method, payload }: UseAxiosProps<T>) => {
+export const useAxios = <T>({ url, method, payload }: UseAxiosProps<T>) => {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState("");
 	const [loaded, setLoaded] = useState(false);

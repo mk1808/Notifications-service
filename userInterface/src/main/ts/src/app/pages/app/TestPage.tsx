@@ -13,8 +13,8 @@ import { useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
-import { UseGetConfigApi } from "@/features/info/hooks/UseGetConfigApi";
-import { UseSendMessageApi } from "@/features/messages/api/UseSendMessageApi";
+import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
+import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -23,9 +23,9 @@ interface InfoPageProps {
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
 
-	const postResponse = UseSendMessageApi();
+	const postResponse = useSendMessageApi();
 
-	const response = UseGetConfigApi();
+	const response = useGetConfigApi();
 
 	useEffect(() => {
 		response.makeRequest();
