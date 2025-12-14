@@ -1,46 +1,63 @@
 import {
 	Alert,
+	Box,
 	Button,
 	Field,
 	HStack,
 	Input,
 	RatingGroup,
 	Slider,
-	Box,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { type JSX } from "react";
+import { useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
+import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
+import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
+
 interface InfoPageProps {
 	placeholder?: string;
 }
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
-	console.log(import.meta.env.VITE_API); 
 
-	const sendUrl = import.meta.env.VITE_API_NOTIFICATIONS;
-	const configUrl = import.meta.env.VITE_API_CONFIG;
-	const getReq = async () => {
-		await fetch(sendUrl + "/send", {
-			method: "GET",
-		});
-	};
-	const postReq = async () => {
-		await fetch(configUrl, {
-			method: "POST",
-		});
-	};
-	getReq();
-	postReq();
+	const postResponse = useSendMessageApi();
+
+	const response = useGetConfigApi();
+
+	useEffect(() => {
+		response.makeRequest();
+		console.log(response.data);
+	}, []);
+	const stringifiedData = useMemo(() => {
+		return JSON.stringify(postResponse.data ?? {});
+	}, [postResponse.data]);
+
 	return (
 		<>
-			{t("welcome")}
+			{placeholder}
+			{t("welcome")} <br />
+			{stringifiedData}
+			{postResponse.loaded}
+			{postResponse.error}
+			{JSON.stringify(response.data || {})}
 			<HStack>
-				<Button onClick={() => console.log(placeholder)}>Click me</Button>
-				<Button _hover={{ bg: "secondary" }} bg="primary">
+				<Button
+					onClick={() => {
+						response.makeRequest();
+					}}
+				>
+					Click me
+				</Button>
+				<Button
+					_hover={{ bg: "secondary" }}
+					bg="primary"
+					onClick={() => {
+						postResponse.makeRequest({});
+					}}
+				>
 					Click me
 				</Button>
 				<Field.Root>
