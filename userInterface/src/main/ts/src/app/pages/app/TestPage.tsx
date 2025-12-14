@@ -1,20 +1,20 @@
 import {
 	Alert,
+	Box,
 	Button,
 	Field,
 	HStack,
 	Input,
 	RatingGroup,
 	Slider,
-	Box,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
 import { useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
-import { UseAxiosGet } from "@/lib/axios/UseAxiosGet";
-import { UseAxiosPost } from "@/lib/axios/UseAxiosPost";
+import { UseGetConfigApi } from "@/features/info/hooks/UseGetConfigApi";
+import { UseSendMessageApi } from "@/features/messages/api/UseSendMessageApi";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -23,12 +23,11 @@ interface InfoPageProps {
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
 
-	const sendUrl = import.meta.env.VITE_API_NOTIFICATIONS;
-	const configUrl = import.meta.env.VITE_API_CONFIG;
 
-	const postResponse = UseAxiosPost(sendUrl + "/send");
+	const postResponse = UseSendMessageApi();
 
-	const response = UseAxiosGet(configUrl);
+	const response = UseGetConfigApi();
+
 	useEffect(() => {
 		response.makeRequest();
 		console.log(response.data);

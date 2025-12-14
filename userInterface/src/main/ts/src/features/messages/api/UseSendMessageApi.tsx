@@ -1,4 +1,4 @@
-import { UseAxiosPost } from "@/lib/axios/UseAxiosPost";
+import { UseAxiosPost } from "@/lib";
 const url = import.meta.env.VITE_API_NOTIFICATIONS;
 
 export const UseSendMessageApi = () => {

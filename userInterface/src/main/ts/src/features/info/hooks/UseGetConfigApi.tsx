@@ -1,4 +1,4 @@
-import { UseAxiosGet } from "@/lib/axios/UseAxiosGet";
+import { UseAxiosGet } from "@/lib";
 const url = import.meta.env.VITE_API_CONFIG;
 
 export const UseGetConfigApi = () => {
