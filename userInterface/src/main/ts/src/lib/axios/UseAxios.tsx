@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface UseAxiosProps<T> {
 	url: string;
@@ -15,25 +15,23 @@ export const UseAxios = <T,>({ url, method, payload }: UseAxiosProps<T>) => {
 	const cancel = () => {
 		controllerRef.current.abort();
 	};
+	const makeRequest = async (body?: T) => {
+		console.log("hello");
+		try {
+			const response = await axios.request({
+				data: body ?? payload,
+				signal: controllerRef.current.signal,
+				method,
+				url,
+			});
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await axios.request({
-					data: payload,
-					signal: controllerRef.current.signal,
-					method,
-					url,
-				});
+			setData(response.data);
+		} catch (error: any) {
+			setError(error.message);
+		} finally {
+			setLoaded(true);
+		}
+	};
 
-				setData(response.data);
-			} catch (error: any) {
-				setError(error.message);
-			} finally {
-				setLoaded(true);
-			}
-		})();
-	}, []);
-
-	return { cancel, data, error, loaded };
+	return { makeRequest, cancel, data, error, loaded };
 };

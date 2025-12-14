@@ -9,7 +9,7 @@ import {
 	Box,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { useMemo, type JSX } from "react";
+import { useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
@@ -22,29 +22,43 @@ interface InfoPageProps {
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
-	console.log(import.meta.env.VITE_API);
 
 	const sendUrl = import.meta.env.VITE_API_NOTIFICATIONS;
 	const configUrl = import.meta.env.VITE_API_CONFIG;
 
-	const { data, error, loaded } = UseAxiosPost(sendUrl + "/send", {});
+	const postResponse = UseAxiosPost(sendUrl + "/send");
 
 	const response = UseAxiosGet(configUrl);
+	useEffect(() => {
+		response.makeRequest();
+		console.log(response.data);
+	}, []);
 	const stringifiedData = useMemo(() => {
-		return JSON.stringify(data || {});
-	}, [data]);
+		return JSON.stringify(postResponse.data || {});
+	}, [postResponse.data]);
 
 	return (
 		<>
 			{t("welcome")} <br />
 			{stringifiedData}
-			{loaded}
-			{error}
+			{postResponse.loaded}
+			{postResponse.error}
 			{JSON.stringify(response.data || {})}
 
 			<HStack>
-				<Button onClick={() => console.log(placeholder)}>Click me</Button>
-				<Button _hover={{ bg: "secondary" }} bg="primary">
+				<Button
+					onClick={() => {
+						response.makeRequest();
+					}}>
+					Click me
+				</Button>
+				<Button
+					_hover={{ bg: "secondary" }}
+					bg="primary"
+					onClick={() => {
+						postResponse.makeRequest({});
+					}}
+				>
 					Click me
 				</Button>
 				<Field.Root>
