@@ -1,12 +1,15 @@
 package com.notifications.services.impl;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.notifications.dtos.NotificationDto;
+import com.notifications.enums.NotificationSourceType;
 import com.notifications.services.NotificationSendService;
 import com.notifications.services.ShortPollingService;
 
-@Service
+@Service(NotificationSourceType.SHORT_POLLING)
+
 public class ShortPollingServiceImpl implements NotificationSendService, ShortPollingService {
 
 	@Override
