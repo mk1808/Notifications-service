@@ -15,7 +15,6 @@ public class SenderServiceImpl implements SenderService {
 	private final DbProperties properties;
 
 	public SenderServiceImpl(NotificationSendFactory factory, DbProperties properties) {
-		super();
 		this.factory = factory;
 		this.properties = properties;
 	}

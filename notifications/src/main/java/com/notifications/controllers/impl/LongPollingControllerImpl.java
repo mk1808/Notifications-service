@@ -8,10 +8,9 @@ import com.notifications.services.LongPollingService;
 @RestController
 public class LongPollingControllerImpl implements LongPollingController {
 
-	private LongPollingService service;
+	private final LongPollingService service;
 
 	public LongPollingControllerImpl(LongPollingService service) {
-		super();
 		this.service = service;
 	}
 

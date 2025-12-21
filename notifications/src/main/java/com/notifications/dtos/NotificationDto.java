@@ -7,16 +7,11 @@ import jakarta.validation.constraints.NotBlank;
 
 public class NotificationDto {
 	
-	public UUID id;
-	public Date created;
+	public UUID id = UUID.randomUUID();
+	public Date created = new Date();
 	
 	@NotBlank(message = "Content is mandatory")
 	public String content;
 	public String recipient;
-	
-	public void fillFields() {
-		this.created = new Date();
-		this.id = UUID.randomUUID();
-	}
 
 }

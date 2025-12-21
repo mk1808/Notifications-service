@@ -18,8 +18,8 @@ import com.notifications.repositories.DbPropertyRepository;
 @Configuration
 public class DbPropertiesConfig implements BeanPostProcessor, InitializingBean, EnvironmentAware {
 
+	private final DbPropertyRepository repository;
 	private ConfigurableEnvironment environment;
-	private DbPropertyRepository repository;
 
 	private static final String PROPERTY_SOURCE_NAME = "propertiesInsideDatabase";
 

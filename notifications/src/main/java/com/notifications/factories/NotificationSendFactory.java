@@ -9,10 +9,9 @@ import com.notifications.services.NotificationSendService;
 @Component
 public class NotificationSendFactory {
 
-	private Map<String, NotificationSendService> services;
+	private final Map<String, NotificationSendService> services;
 
 	public NotificationSendFactory(Map<String, NotificationSendService> services) {
-		super();
 		this.services = services;
 	}
 

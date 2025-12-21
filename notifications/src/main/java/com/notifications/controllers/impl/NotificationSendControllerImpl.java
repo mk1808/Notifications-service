@@ -10,16 +10,15 @@ import com.notifications.services.SenderService;
 @RestController
 public class NotificationSendControllerImpl implements NotificationSendController {
 
-	private SenderService senderService;
+	private final SenderService senderService;
 
 	public NotificationSendControllerImpl(SenderService senderService) {
-		super();
 		this.senderService = senderService;
 	}
 
 	@Override
 	public ResponseEntity<String> send(NotificationDto notificationDto) {
-		notificationDto.fillFields();
+
 		senderService.send(notificationDto);
 		return ResponseEntity.ok("ok");
 	}

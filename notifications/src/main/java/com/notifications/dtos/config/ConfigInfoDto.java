@@ -8,11 +8,9 @@ public class ConfigInfoDto {
 	public RabbitPropertiesDto rabbitProperties;
 	
 	public ConfigInfoDto() {
-		super();
 	}
 
 	public ConfigInfoDto(DbProperties dbProperties, RabbitProperties rabbitProperties) {
-		super();
 		this.dbProperties = new DbPropertiesDto(dbProperties);
 		this.rabbitProperties = new RabbitPropertiesDto(rabbitProperties);
 	}
