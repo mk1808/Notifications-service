@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import type { Api, CallbackType } from "@/types/types";
 const url = import.meta.env.VITE_API_NOTIFICATIONS_SSE;
@@ -6,9 +6,12 @@ const url = import.meta.env.VITE_API_NOTIFICATIONS_SSE;
 export const useSse = (callback: CallbackType = () => {}) => {
 	const [messages, setMessages] = useState<Api.NotificationDto[]>([]);
 
-	const addMessage = (newMessage: Api.NotificationDto) => {
-		setMessages((messages) => [...messages, newMessage]);
-	};
+	const addMessage = useCallback(
+		(newMessage: Api.NotificationDto) => {
+			setMessages((messages) => [...messages, newMessage]);
+		},
+		[setMessages],
+	);
 
 	useEffect(() => {
 		const eventSource = new EventSource(url);
@@ -24,7 +27,7 @@ export const useSse = (callback: CallbackType = () => {}) => {
 			console.log(error);
 			eventSource.close();
 		};
-	}, []);
+	}, [addMessage, callback]);
 
 	return { messages };
 };
