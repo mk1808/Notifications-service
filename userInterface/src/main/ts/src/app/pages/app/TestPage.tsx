@@ -7,6 +7,7 @@ import {
 	Input,
 	RatingGroup,
 	Slider,
+	VStack,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
 import { useEffect, useMemo, type JSX } from "react";
@@ -15,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { getCssVar } from "@/config/themeConfig";
 import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
 import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
+import { useSse } from "@/features/notifications/hooks/useSse";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -26,6 +28,8 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const postResponse = useSendMessageApi();
 
 	const response = useGetConfigApi();
+
+	const { messages } = useSse(console.log);
 
 	useEffect(() => {
 		response.makeRequest();
@@ -109,6 +113,11 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 				</Field.Root>
 				<p>zwykły tekst</p>
 			</HStack>
+			<VStack>
+				{messages.map((message) => (
+					<p key={message.id}>{message.content}</p>
+				))}
+			</VStack>
 		</>
 	);
 };
