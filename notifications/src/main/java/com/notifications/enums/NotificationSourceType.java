@@ -6,5 +6,7 @@ public class NotificationSourceType {
 	public static final String SHORT_POLLING = "SHORT_POLLING";
 	public static final String WEBSOCKET = "WEBSOCKET";
 	public static final String RABBIT = "RABBIT";
+	
+	private NotificationSourceType() {}
 
 }

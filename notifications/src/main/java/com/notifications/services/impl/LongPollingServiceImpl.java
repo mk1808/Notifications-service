@@ -1,5 +1,7 @@
 package com.notifications.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.notifications.dtos.NotificationDto;
@@ -10,13 +12,11 @@ import com.notifications.services.NotificationSendService;
 @Service(NotificationSourceType.LONG_POLLING)
 public class LongPollingServiceImpl implements NotificationSendService, LongPollingService {
 
-	public LongPollingServiceImpl() {
-
-	}
+	Logger logger = LoggerFactory.getLogger(LongPollingServiceImpl.class);
 
 	@Override
 	public void send(NotificationDto dto) {
-		// TODO Auto-generated method stub
+		logger.info("sending by long polling");
 
 	}
 

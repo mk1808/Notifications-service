@@ -10,8 +10,8 @@ import com.notifications.services.SenderService;
 
 @Service
 public class SenderServiceImpl implements SenderService {
-	private final NotificationSendFactory factory;
 	
+	private final NotificationSendFactory factory;
 	private final DbProperties properties;
 
 	public SenderServiceImpl(NotificationSendFactory factory, DbProperties properties) {
