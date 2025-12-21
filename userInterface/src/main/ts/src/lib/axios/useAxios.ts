@@ -25,8 +25,10 @@ export const useAxios = <T>({ url, method, payload }: UseAxiosProps<T>) => {
 			});
 
 			setData(response.data);
+			return response.data;
 		} catch (error: any) {
 			setError(error.message);
+			throw new Error(error);
 		} finally {
 			setLoaded(true);
 		}

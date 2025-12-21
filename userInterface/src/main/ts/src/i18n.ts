@@ -10,8 +10,8 @@ i18n
 		backend: {
 			loadPath: "locales/{{lng}}/translation.json",
 		},
-		lng: "en",
-		fallbackLng: "en",
+		lng: "pl",
+		fallbackLng: "pl",
 		debug: true,
 		supportedLngs: ["en", "pl"],
 		interpolation: {

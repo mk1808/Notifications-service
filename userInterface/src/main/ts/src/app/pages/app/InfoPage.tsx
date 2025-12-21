@@ -1,12 +1,13 @@
 import { type JSX } from "react";
+
+import ConfigInfo from "@/features/info/components/ConfigInfo";
 interface InfoPageProps {
 	placeholder?: string;
 }
 
 const InfoPage = ({ placeholder }: InfoPageProps): JSX.Element => (
 	<div>
-		<h1>InfoPage component</h1>
-		{placeholder}
+		<ConfigInfo />
 	</div>
 );
 

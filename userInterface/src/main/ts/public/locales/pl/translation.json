@@ -1,3 +1,4 @@
 {
-    "welcome": "Witaj w React + Vite + i18n!"
+    "welcome": "Witaj w React + Vite + i18n!",
+    "wayOfSendingNotifications": "Sposób przesyłania powiadomień"
 }
