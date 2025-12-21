@@ -1,6 +1,7 @@
 package com.notifications.controllers.impl;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import com.notifications.controllers.SSEController;
 import com.notifications.services.SSEService;
@@ -14,4 +15,9 @@ public class SSEControllerImpl implements SSEController {
 		this.service = service;
 	}
 
+	public SseEmitter connect() {
+		SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
+		service.register(emitter);
+        return emitter;
+	}
 }
