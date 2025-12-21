@@ -8,10 +8,9 @@ import com.notifications.services.ShortPollingService;
 @RestController
 public class ShortPollingControllerImpl implements ShortPollingController {
 
-	private ShortPollingService service;
+	private final ShortPollingService service;
 
 	public ShortPollingControllerImpl(ShortPollingService service) {
-		super();
 		this.service = service;
 	}
 

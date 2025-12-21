@@ -18,11 +18,11 @@ import com.notifications.services.other.ConfigInfoUpdateService;
 public class ConfigInfoUpdateServiceImpl implements ConfigInfoUpdateService, EnvironmentAware {
 
 	private static final String PROPERTY_SOURCE_NAME = "propertiesInsideDatabase";
+	private final DbPropertyRepository repository;
 	private ConfigurableEnvironment environment;
-	private DbPropertyRepository repository;
+	
 
 	public ConfigInfoUpdateServiceImpl(ConfigurableEnvironment environment, DbPropertyRepository repository) {
-		super();
 		this.environment = environment;
 		this.repository = repository;
 	}

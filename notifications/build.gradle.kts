@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
   	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("org.springframework.boot:spring-boot-starter-validation:4.0.1")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.amqp:spring-rabbit-test")

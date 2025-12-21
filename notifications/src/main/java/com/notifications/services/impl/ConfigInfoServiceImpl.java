@@ -15,14 +15,13 @@ import com.notifications.services.other.ConfigInfoUpdateService;
 @Service
 public class ConfigInfoServiceImpl implements ConfigInfoService {
 
-	private DbProperties dbProperties;
-	private RabbitProperties rabbitProperties;
-	private ConfigInfoUpdateService configInfoUpdateService;
+	private final DbProperties dbProperties;
+	private final RabbitProperties rabbitProperties;
+	private final ConfigInfoUpdateService configInfoUpdateService;
 
 	Logger logger = LoggerFactory.getLogger(ConfigInfoServiceImpl.class);
 
 	public ConfigInfoServiceImpl(DbProperties dbProperties, RabbitProperties rabbitProperties, ConfigInfoUpdateService configInfoUpdateService) {
-		super();
 		this.dbProperties = dbProperties;
 		this.rabbitProperties = rabbitProperties;
 		this.configInfoUpdateService = configInfoUpdateService;

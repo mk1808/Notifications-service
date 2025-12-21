@@ -8,10 +8,9 @@ import com.notifications.services.SSEService;
 @RestController
 public class SSEControllerImpl implements SSEController {
 
-	private SSEService service;
+	private final SSEService service;
 
 	public SSEControllerImpl(SSEService service) {
-		super();
 		this.service = service;
 	}
 

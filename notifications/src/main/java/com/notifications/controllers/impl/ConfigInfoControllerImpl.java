@@ -12,10 +12,9 @@ import com.notifications.services.ConfigInfoService;
 @RestController
 public class ConfigInfoControllerImpl implements ConfigInfoController {
 
-	private ConfigInfoService configInfoService;
+	private final ConfigInfoService configInfoService;
 
 	public ConfigInfoControllerImpl(ConfigInfoService configInfoService) {
-		super();
 		this.configInfoService = configInfoService;
 	}
 
