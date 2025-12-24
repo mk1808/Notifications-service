@@ -27,7 +27,7 @@ export const useWebSocket = (callback: CallbackType = () => {}) => {
 		(newMessage: Api.NotificationDto) => {
 			setMessages((messages) => [...messages, newMessage]);
 		},
-		[setMessages]
+		[setMessages],
 	);
 
 	const onMessage = useCallback(
@@ -37,7 +37,7 @@ export const useWebSocket = (callback: CallbackType = () => {}) => {
 			addMessage(newMessage);
 			callback(newMessage);
 		},
-		[addMessage, callback]
+		[addMessage, callback],
 	);
 
 	useEffect(() => {
@@ -65,7 +65,7 @@ export const useWebSocket = (callback: CallbackType = () => {}) => {
 		return () => {
 			stompClient.deactivate();
 		};
-	}, []);
+	}, [onMessage, publishConnectUser]);
 
 	return { messages };
 };

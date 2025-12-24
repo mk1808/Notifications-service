@@ -12,7 +12,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { useEffect, useMemo, type JSX } from "react";
+import { useCallback, useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
@@ -33,7 +33,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const response = useGetConfigApi();
 
 	const { messages } = useSse(console.log);
-	const onWebsocketMessage = (m)=>console.log(m)
+	const onWebsocketMessage = useCallback((m) => console.log(m), []);
 	const messagesWebsocket = useWebSocket(onWebsocketMessage);
 
 	useEffect(() => {
