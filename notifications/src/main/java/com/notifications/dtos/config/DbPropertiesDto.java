@@ -6,8 +6,16 @@ public class DbPropertiesDto {
 	
 	public String notificationSource;
 
+	public Long shortPollingClientInactivitySchedulerInterval;
+	public Long shortPollingClientInactivityTimeout;
+	public Long shortPollingClientRequestInterval;
+
 	public DbPropertiesDto(DbProperties dbProperties) {
-		this.notificationSource = dbProperties.getNotificationSource();
+		notificationSource = dbProperties.getNotificationSource();
+		
+		shortPollingClientInactivitySchedulerInterval = dbProperties.getShortPollingClientInactivitySchedulerInterval();
+		shortPollingClientInactivityTimeout = dbProperties.getShortPollingClientInactivityTimeout();
+		shortPollingClientRequestInterval = dbProperties.getShortPollingClientRequestInterval();
 	}
 
 }

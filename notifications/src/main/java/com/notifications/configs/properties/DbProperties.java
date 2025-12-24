@@ -14,6 +14,10 @@ public class DbProperties {
 	Logger logger = LoggerFactory.getLogger(DbProperties.class);
 
 	private String notificationSource;
+	
+	private Long shortPollingClientInactivitySchedulerInterval;
+	private Long shortPollingClientInactivityTimeout;
+	private Long shortPollingClientRequestInterval;
 
 	public String getNotificationSource() {
 		return notificationSource;
@@ -23,9 +27,37 @@ public class DbProperties {
 		this.notificationSource = notificationSource;
 	}
 
+	public Long getShortPollingClientInactivitySchedulerInterval() {
+		return shortPollingClientInactivitySchedulerInterval;
+	}
+
+	public void setShortPollingClientInactivitySchedulerInterval(Long shortPollingClientInactivitySchedulerInterval) {
+		this.shortPollingClientInactivitySchedulerInterval = shortPollingClientInactivitySchedulerInterval;
+	}
+
+	public Long getShortPollingClientInactivityTimeout() {
+		return shortPollingClientInactivityTimeout;
+	}
+
+	public void setShortPollingClientInactivityTimeout(Long shortPollingClientInactivityTimeout) {
+		this.shortPollingClientInactivityTimeout = shortPollingClientInactivityTimeout;
+	}
+
+	public Long getShortPollingClientRequestInterval() {
+		return shortPollingClientRequestInterval;
+	}
+
+	public void setShortPollingClientRequestInterval(Long shortPollingClientRequestInterval) {
+		this.shortPollingClientRequestInterval = shortPollingClientRequestInterval;
+	}
+
 	@Override
 	public String toString() {
-		return "DbProperties [notificationSource=" + notificationSource + "]";
+		return "DbProperties [notificationSource=" + notificationSource 
+				+ ", shortPollingClientInactivitySchedulerInterval=" + shortPollingClientInactivitySchedulerInterval 
+				+ ", shortPollingClientInactivityTimeout=" + shortPollingClientInactivityTimeout
+				+ ", shortPollingClientRequestInterval=" + shortPollingClientRequestInterval
+				+ "]";
 	}
 	
 }
