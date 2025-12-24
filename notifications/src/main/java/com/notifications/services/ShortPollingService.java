@@ -1,5 +1,12 @@
 package com.notifications.services;
 
-public interface ShortPollingService {
+import com.notifications.dtos.NotificationDto;
 
+public interface ShortPollingService {
+	
+	NotificationDto getNext(String clientId);
+	
+	void unregister(String clientId);
+	
+	void cleanClients();
 }
