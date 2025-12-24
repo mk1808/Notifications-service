@@ -47,9 +47,9 @@ function connectSelf() {
 
 // Function called when WebSocket connection is successful
 function onConnected() {
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/topic/notifications', onMessageReceived);
 
-    stompClient.send("/app/chat.connectUser",
+    stompClient.send("/app/connectUser",
         {},
         JSON.stringify({ recipient: username, type: 'JOIN' })
     );
@@ -72,7 +72,7 @@ function sendMessage(event) {
             content: messageInput.value,
             type: 'CHAT'
         };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();

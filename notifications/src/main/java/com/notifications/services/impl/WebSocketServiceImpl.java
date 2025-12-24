@@ -24,7 +24,7 @@ public class WebSocketServiceImpl implements NotificationSendService, WebSocketS
 	@Override
 	public void send(NotificationDto dto) {
 		logger.info("sending by websocket");
-		messagingTemplate.convertAndSend("/topic/public", dto);
+		messagingTemplate.convertAndSend("/topic/notifications", dto);
 	}
 
 }

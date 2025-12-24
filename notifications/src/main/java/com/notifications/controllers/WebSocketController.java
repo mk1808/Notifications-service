@@ -8,8 +8,8 @@ import com.notifications.dtos.NotificationDto;
 
 public interface WebSocketController {
 
-	@MessageMapping("/chat.connectUser")
-	@SendTo("/topic/public")
+	@MessageMapping("/connectUser")
+	@SendTo("/topic/notifications")
 	NotificationDto connectUser(NotificationDto notificationDto, SimpMessageHeaderAccessor headerAccessor);
 
 }
