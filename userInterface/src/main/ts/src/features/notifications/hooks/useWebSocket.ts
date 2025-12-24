@@ -1,7 +1,8 @@
-import type { Api, CallbackType } from "@/types/types";
 import { Client, type IMessage } from "@stomp/stompjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SockJS from "sockjs-client";
+
+import type { Api, CallbackType } from "@/types/types";
 
 const env = import.meta.env;
 const api = env.VITE_API;
@@ -41,7 +42,7 @@ export const useWebSocket = (callback: CallbackType = () => {}) => {
 	);
 
 	useEffect(() => {
-		const socket = new SockJS(`${api}${websocketUrl}`);
+		const socket = new SockJS(`${api ?? ""}${websocketUrl}`);
 		const stompClient: Client = new Client({
 			webSocketFactory: () => socket,
 			reconnectDelay: delay,
