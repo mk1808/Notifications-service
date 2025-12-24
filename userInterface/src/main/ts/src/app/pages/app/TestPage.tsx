@@ -6,17 +6,20 @@ import {
 	HStack,
 	Input,
 	RatingGroup,
+	Separator,
 	Slider,
+	Text,
 	VStack,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { useEffect, useMemo, type JSX } from "react";
+import { useCallback, useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
 import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
 import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
 import { useSse } from "@/features/notifications/hooks/useSse";
+import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -30,6 +33,8 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const response = useGetConfigApi();
 
 	const { messages } = useSse(console.log);
+	const onWebsocketMessage = useCallback((m) => console.log(m), []);
+	const messagesWebsocket = useWebSocket(onWebsocketMessage);
 
 	useEffect(() => {
 		response.makeRequest();
@@ -68,6 +73,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 					<Field.Label>Email</Field.Label>
 					<Input placeholder="me@example.com" />
 				</Field.Root>
+
 				<Slider.Root defaultValue={[40]} width="52">
 					<Slider.Control>
 						<Slider.Track>
@@ -113,8 +119,17 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 				</Field.Root>
 				<p>zwykły tekst</p>
 			</HStack>
+			<Text style={{ marginTop: "50px", marginBottom: "10px" }}>SSE</Text>
+			<Separator />
 			<VStack>
 				{messages.map((message) => (
+					<p key={message.id}>{message.content}</p>
+				))}
+			</VStack>
+			<Text style={{ marginTop: "50px", marginBottom: "10px" }}>WEBSOCKETS</Text>
+			<Separator />
+			<VStack>
+				{messagesWebsocket.messages.map((message) => (
 					<p key={message.id}>{message.content}</p>
 				))}
 			</VStack>
