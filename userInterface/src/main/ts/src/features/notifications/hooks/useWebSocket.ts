@@ -1,10 +1,17 @@
 import type { Api, CallbackType } from "@/types/types";
-import { useCallback, useEffect, useState } from "react";
-const url = import.meta.env.VITE_API_NOTIFICATIONS_SSE;
+import { Client } from "@stomp/stompjs";
+import { useCallback, useEffect, useRef, useState } from "react";
+import SockJS from "sockjs-client";
+
+const env = import.meta.env;
+const api = env.VITE_API
+const websocketUrl = env.VITE_API_NOTIFICATIONS_WEBSOCKET;
+const delay = env.VITE_NOTIFICATIONS_WEBSOCKET_RECONNECT_DELAY;
+const channel = env.VITE_NOTIFICATIONS_WEBSOCKET_CHANNEL;
 
 export const useWebSocket = (callback: CallbackType = () => {}) => {
 	const [messages, setMessages] = useState<Api.NotificationDto[]>([]);
-
+	const stompClientRef = useRef<Client|null>(null);
 	
 	const addMessage = useCallback(
 		(newMessage: Api.NotificationDto) => {
@@ -14,42 +21,21 @@ export const useWebSocket = (callback: CallbackType = () => {}) => {
 	);
 
 	useEffect(() => {
-		const eventSource = new EventSource(url);
-
-		eventSource.onmessage = (event) => {
-			console.log(event);
-			const newMessage = JSON.parse(event.data) as Api.NotificationDto;
-			addMessage(newMessage);
-			callback(newMessage);
-		};
-
-		eventSource.onerror = (error) => {
-			console.log(error);
-			eventSource.close();
-		};
-	}, [addMessage, callback]);
-
-	return { messages };
-};
-
-const StompExample = () => {
-	const [message, setMessage] = useState('');
-	const [name, setName] = useState('');
-	const stompClientRef = useRef(null);
-
-	useEffect(() => {
-		const socket = new SockJS('http://localhost:8072/NOTIFICATIONS/ws');
+		const socket = new SockJS(`${api}${websocketUrl}`);
+		const username = self.crypto.randomUUID();
 		const stompClient = new Client({
 			webSocketFactory: () => socket,
-			reconnectDelay: 5000,
+			reconnectDelay: delay,
 			debug: (str) => {
 				console.log(str);
 			},
 			onConnect: () => {
 				console.log('Connected to WebSocket');
-				stompClient.subscribe('/topic/public', (response) => {
+				stompClient.subscribe(channel, (response) => {
 					console.log('Received message:', response.body);
-					setMessage(JSON.parse(response.body).content);
+					const newMessage = JSON.parse(response.body);
+					addMessage(newMessage);
+					callback(newMessage);
 				});
 			},
 			onStompError: (frame) => {
@@ -66,29 +52,5 @@ const StompExample = () => {
 		};
 	}, []);
 
-	const sendMessage = () => {
-		const stompClient = stompClientRef.current;
-		if (stompClient && stompClient.connected) {
-			console.log('Sending message:', name);
-			stompClient.publish({
-				destination: '/app/hello',
-				body: name,
-			});
-		} else {
-			console.error('Stomp client is not connected');
-		}
-	};
-
-	return (
-		<div>
-			<input 
-				type="text" 
-				placeholder="Enter your name" 
-				value={name} 
-				onChange={(e) => setName(e.target.value)} 
-			/>
-			<button onClick={sendMessage}>Send</button>
-			<p>{message}</p>
-		</div>
-	);
+	return { messages };
 };

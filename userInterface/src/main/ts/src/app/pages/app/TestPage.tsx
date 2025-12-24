@@ -19,9 +19,7 @@ import { getCssVar } from "@/config/themeConfig";
 import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
 import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
 import { useSse } from "@/features/notifications/hooks/useSse";
-import NativeWebSocketExample from "@/features/notifications/hooks/NativeWebsocketExample";
-import NewWebsocket from "@/features/notifications/hooks/NewWebsocket";
-import StompExample from "@/features/notifications/hooks/StompExample";
+import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -35,6 +33,8 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const response = useGetConfigApi();
 
 	const { messages } = useSse(console.log);
+	const onWebsocketMessage = (m)=>console.log(m)
+	const messagesWebsocket = useWebSocket(onWebsocketMessage);
 
 	useEffect(() => {
 		response.makeRequest();
@@ -73,7 +73,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 					<Field.Label>Email</Field.Label>
 					<Input placeholder="me@example.com" />
 				</Field.Root>
-				
+
 				<Slider.Root defaultValue={[40]} width="52">
 					<Slider.Control>
 						<Slider.Track>
@@ -119,16 +119,22 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 				</Field.Root>
 				<p>zwykły tekst</p>
 			</HStack>
+			<Text style={{ marginTop: "50px", marginBottom: "10px" }}>SSE</Text>
+			<Separator />
 			<VStack>
 				{messages.map((message) => (
 					<p key={message.id}>{message.content}</p>
 				))}
 			</VStack>
-			<Text style={{marginTop:"50px", marginBottom:"10px"}}>WEBSOCKETS</Text>
-      <Separator />
-			<StompExample/>
+			<Text style={{ marginTop: "50px", marginBottom: "10px" }}>WEBSOCKETS</Text>
+			<Separator />
+			<VStack>
+				{messagesWebsocket.messages.map((message) => (
+					<p key={message.id}>{message.content}</p>
+				))}
+			</VStack>
 		</>
 	);
 };
-//<NativeWebSocketExample />
+
 export default TestPage;
