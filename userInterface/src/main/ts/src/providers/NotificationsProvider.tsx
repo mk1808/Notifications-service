@@ -1,5 +1,6 @@
 import {
 	createContext,
+	use,
 	useCallback,
 	useMemo,
 	useReducer,
@@ -87,3 +88,25 @@ const NotificationsProvider = ({ children }: { children: ReactNode }) => {
 	);
 };
 export default NotificationsProvider;
+
+export const useNotificationContext = () => {
+	const context = use(NotificationContext);
+
+	if (context === undefined) {
+		throw new Error("useNotificationContext was used outside of its Provider");
+	}
+
+	return context;
+};
+
+export const useNotificationActionContext = () => {
+	const context = use(NotificationActionContext);
+
+	if (context === undefined) {
+		throw new Error(
+			"useNotificationActionContext was used outside of its Provider",
+		);
+	}
+
+	return context;
+};

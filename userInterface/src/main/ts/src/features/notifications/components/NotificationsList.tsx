@@ -1,14 +1,16 @@
-import { useContext, type JSX } from "react";
+import { type JSX } from "react";
 
 import "../styles.scss";
-import { NotificationContext, type NotificationsState } from "@/providers/NotificationsProvider";
+import {
+	useNotificationContext,
+	type NotificationsState,
+} from "@/providers/NotificationsProvider";
 interface AuthLayoutProps {
 	placeholder?: string;
 }
 
 const NotificationsList = ({ placeholder }: AuthLayoutProps): JSX.Element => {
-	const { list, numberOfNew }: NotificationsState =
-		useContext(NotificationContext);
+	const { list }: NotificationsState = useNotificationContext();
 	console.log(list);
 	return (
 		<div className="notifications-list">

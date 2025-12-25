@@ -12,7 +12,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { useCallback, useContext, useEffect, useMemo, type JSX } from "react";
+import { useCallback, useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
@@ -21,7 +21,7 @@ import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
 import NotificationsList from "@/features/notifications/components/NotificationsList";
 import { useSse } from "@/features/notifications/hooks/useSse";
 import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
-import { NotificationActionContext } from "@/providers/NotificationsProvider";
+import { useNotificationActionContext } from "@/providers/NotificationsProvider";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -30,7 +30,7 @@ interface InfoPageProps {
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
 
-	const { add } = useContext(NotificationActionContext);
+	const { add } = useNotificationActionContext();
 
 	const postResponse = useSendMessageApi();
 
