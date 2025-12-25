@@ -15,14 +15,14 @@ export const ADD = "ADD";
 export const ACKNOWLEDGE = "ACKNOWLEDGE";
 export const DELETE = "DELETE";
 
-interface NotificationsState {
+export interface NotificationsState {
 	list: Api.NotificationDto[];
-	numberOfnew: number;
+	numberOfNew: number;
 }
 
 const initialState: NotificationsState = {
 	list: [],
-	numberOfnew: 0,
+	numberOfNew: 0,
 };
 
 function reducer(state: NotificationsState, action: Action) {
@@ -31,6 +31,7 @@ function reducer(state: NotificationsState, action: Action) {
 			console.log("add");
 			return {
 				...state,
+				list: [...state.list, action.data.notification],
 			};
 		}
 		case ACKNOWLEDGE: {

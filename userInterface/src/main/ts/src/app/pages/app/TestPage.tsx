@@ -12,7 +12,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { Camera } from "lucide-react";
-import { useCallback, useEffect, useMemo, type JSX } from "react";
+import { useCallback, useContext, useEffect, useMemo, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCssVar } from "@/config/themeConfig";
@@ -21,6 +21,7 @@ import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
 import NotificationsList from "@/features/notifications/components/NotificationsList";
 import { useSse } from "@/features/notifications/hooks/useSse";
 import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
+import { NotificationActionContext } from "@/providers/NotificationsProvider";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -28,6 +29,8 @@ interface InfoPageProps {
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
+
+	const { add } = useContext(NotificationActionContext);
 
 	const postResponse = useSendMessageApi();
 
@@ -106,7 +109,12 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 						{getCssVar("colors.primary")}
 					</span>
 				</p>
-				<Button colorPalette="primary">Button</Button>
+				<Button
+					colorPalette="primary"
+					onClick={() => add({ id: 1, content: "hello" })}
+				>
+					Button check context
+				</Button>
 				<Button colorPalette="secondary">Button</Button>
 				<Button colorPalette="accent">Button</Button>
 				<Box bg="primary.solid" color="primary.contrast">
