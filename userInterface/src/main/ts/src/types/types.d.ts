@@ -8,3 +8,8 @@ export declare namespace Api {
 }
 
 export type CallbackType = <T>(t: T) => void;
+
+export interface Action {
+	type: string;
+	data: any;
+}

@@ -18,8 +18,10 @@ import { useTranslation } from "react-i18next";
 import { getCssVar } from "@/config/themeConfig";
 import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
 import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
+import NotificationsList from "@/features/notifications/components/NotificationsList";
 import { useSse } from "@/features/notifications/hooks/useSse";
 import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
+import { useNotificationActionContext } from "@/providers/NotificationsProvider";
 
 interface InfoPageProps {
 	placeholder?: string;
@@ -27,6 +29,8 @@ interface InfoPageProps {
 
 const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 	const { t } = useTranslation();
+
+	const { add } = useNotificationActionContext();
 
 	const postResponse = useSendMessageApi();
 
@@ -105,7 +109,12 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 						{getCssVar("colors.primary")}
 					</span>
 				</p>
-				<Button colorPalette="primary">Button</Button>
+				<Button
+					colorPalette="primary"
+					onClick={() => add({ id: 1, content: "hello" })}
+				>
+					Button check context
+				</Button>
 				<Button colorPalette="secondary">Button</Button>
 				<Button colorPalette="accent">Button</Button>
 				<Box bg="primary.solid" color="primary.contrast">
@@ -133,6 +142,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 					<p key={message.id}>{message.content}</p>
 				))}
 			</VStack>
+			<NotificationsList></NotificationsList>
 		</>
 	);
 };
