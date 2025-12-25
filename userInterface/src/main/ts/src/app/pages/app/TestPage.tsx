@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { getCssVar } from "@/config/themeConfig";
 import { useGetConfigApi } from "@/features/info/api/useGetConfigApi";
 import { useSendMessageApi } from "@/features/messages/api/useSendMessageApi";
+import NotificationsList from "@/features/notifications/components/NotificationsList";
 import { useSse } from "@/features/notifications/hooks/useSse";
 import { useWebSocket } from "@/features/notifications/hooks/useWebSocket";
 
@@ -133,6 +134,7 @@ const TestPage = ({ placeholder }: InfoPageProps): JSX.Element => {
 					<p key={message.id}>{message.content}</p>
 				))}
 			</VStack>
+			<NotificationsList></NotificationsList>
 		</>
 	);
 };
